@@ -1,8 +1,15 @@
 import React from 'react'
 import Avatar from '@material-ui/core/Avatar';
 import './SideBarChat.css'
-function SideBarChat() {
-    return (
+function SideBarChat({addnewchat}) {
+    const newchat=()=>{
+        const roomname=prompt("Enter chat roomname")
+        if(roomname)
+        {
+            
+        }
+    }
+    return !addnewchat?(
         <>
           <div className="chat__container">
               <Avatar/>
@@ -13,6 +20,10 @@ function SideBarChat() {
               
               </div>  
         </>
+    ):(
+        <div className="chat__container" onClick={newchat}>
+            <h2>Add new Chat</h2>
+            </div>
     )
 }
 
