@@ -1,0 +1,25 @@
+.chat__container
+{
+    margin-top:5px;
+    display: flex;
+    padding:20px;
+    cursor: pointer;
+    align-items: center;
+    border-bottom: 1px solid rgb(163, 160, 160,0.4);
+    border-radius: 5px;
+    
+    
+    
+}
+.chat__container__chat
+{
+    margin-left: 10px;
+}
+.chat__container:hover
+{
+    background-color:rgb(163, 160, 160,0.4);
+}
+.chat__container__chat > h2
+{
+    font-size:16px;
+}
