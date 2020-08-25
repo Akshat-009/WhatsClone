@@ -4,4 +4,26 @@
   padding:0;
   box-sizing: border-box;
   font-family: 'Noto Sans TC', sans-serif;
+  
+}
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+/* Track */
+body::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(255,255,255); 
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+
+/* Handle */
+body::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background: rgba(255,0,0,0.8); 
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+vody::-webkit-scrollbar-thumb:window-inactive {
+background: rgba(255,0,0,0.4); 
 }
