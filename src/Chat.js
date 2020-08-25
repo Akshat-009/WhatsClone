@@ -22,7 +22,7 @@ const [{user},dispatch]=useStateValue()
 db.collection("rooms").doc(roomid).onSnapshot((snapshot) =>{
     setroomname(snapshot.data().roomname)
 })
-db.collection("rooms").doc(roomid).collection("messages").onSnapshot((snapshot) =>(
+db.collection("rooms").doc(roomid).collection("messages").orderBy("timestamp","asc").onSnapshot((snapshot) =>(
     setmessage(snapshot.docs.map((doc) =>
         doc.data()
     ))
@@ -47,7 +47,7 @@ const sendmessage =(e)=>{
             <Avatar/>
             <div className="conv__header__info">
     <h3>{roomname}</h3>
-    <p>{messages[messages.length - 1]?.toDate().toUTCString()}</p>
+    <p>last seen </p>
             </div>
             <div className="conv__header__right">
                 <IconButton>
