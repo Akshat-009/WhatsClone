@@ -71,3 +71,25 @@
     margin-left:auto;
     background-color:#dcf8c6;
 }
+.conv__footer
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color:rgba(211, 211, 211, 0.671);
+}
+.conv__footer > form {
+    display: flex;
+    flex: 1;
+
+
+}
+.conv__footer > form > input {
+    flex: 1;
+    border:none;
+    padding: 9px;
+    border-radius: 10px;
+}
+.conv__footer > form > button {
+    display:none;
+}
