@@ -16,7 +16,8 @@ function Login() {
     }
     return (
         <div className="login__cont">
-           <Button onClick ={signin}variant="contained">
+            <h1>Apna Room</h1>
+           <Button onClick ={signin}variant="contained" className="login__button">
            Sign In with Google
             </Button>
         </div>
