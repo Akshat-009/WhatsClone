@@ -24,3 +24,11 @@
 {
     font-size:16px;
 }
+.chats 
+{
+    text-decoration:none;
+    color:black;
+}
+.active .chat__container{
+    background-color:rgba(211, 211, 211, 0.671);
+}

@@ -1,4 +1,4 @@
-import React ,{useState}from 'react'
+import React ,{useState,useEffect}from 'react'
 import './Chat.css'
 import Avatar from '@material-ui/core/Avatar';
 import SearchIcon from '@material-ui/icons/Search';
@@ -7,11 +7,38 @@ import AttachFileIcon from '@material-ui/icons/AttachFile';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import MicIcon from '@material-ui/icons/Mic';
+import {useParams} from "react-router-dom";
+import {useStateValue} from "./StateProvider"
+import db from "./firebase"
+import firebase from "firebase"
 function Chat() {
 const [input, setinput] = useState("")
+const [{user},dispatch]=useStateValue()
+ const {roomid}=useParams();
+ const [roomname,setroomname]=useState("")
+ const [messages,setmessage] = useState([])
+ console.log(roomid)
+ useEffect(() =>{
+db.collection("rooms").doc(roomid).onSnapshot((snapshot) =>{
+    setroomname(snapshot.data().roomname)
+})
+db.collection("rooms").doc(roomid).collection("messages").onSnapshot((snapshot) =>(
+    setmessage(snapshot.docs.map((doc) =>
+        doc.data()
+    ))
+))
+
+ },[roomid])
+ console.log(messages)
+
 const sendmessage =(e)=>{
     e.preventDefault()
     console.log(input)
+    db.collection("rooms").doc(roomid).collection("messages").add({
+        author:user.displayName,
+        message:input,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    })
     setinput("")
 }
     return (
@@ -19,8 +46,8 @@ const sendmessage =(e)=>{
             <div className="conv__header">
             <Avatar/>
             <div className="conv__header__info">
-            <h3>Room name</h3>
-             <p>info</p>
+    <h3>{roomname}</h3>
+    <p>{messages[messages.length - 1]?.toDate().toUTCString()}</p>
             </div>
             <div className="conv__header__right">
                 <IconButton>
@@ -35,10 +62,13 @@ const sendmessage =(e)=>{
             </div>
             </div>
             <div className="conv__body">
-                
-            <p className="message"><span className="sender">Akshat</span>sample message<span className="timestamp">3:52 pm</span></p>
-            <p className={`message ${true && "message_recieve"}`}><span className="sender">Akshat</span>sample message</p>
-            <p className="message"><span className="sender">Akshat</span>sample message</p>
+                {messages.map((message)=>(
+                    <p className={`message ${message.author===user.displayName && "message_recieve"}`}><span className="sender">{message.author}</span>{message.message}<span className="timestamp">{new Date(message.timestamp?.toDate()).toUTCString()}</span></p>
+    ))}
+
+
+         
+         
         
             </div>
             <div className="conv__footer">
