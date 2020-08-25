@@ -47,7 +47,7 @@ const sendmessage =(e)=>{
             <Avatar/>
             <div className="conv__header__info">
     <h3>{roomname}</h3>
-    <p>last seen </p>
+    
             </div>
             <div className="conv__header__right">
                 <IconButton>
@@ -63,7 +63,7 @@ const sendmessage =(e)=>{
             </div>
             <div className="conv__body">
                 {messages.map((message)=>(
-                    <p className={`message ${message.author===user.displayName && "message_recieve"}`}><span className="sender">{message.author}</span>{message.message}<span className="timestamp">{new Date(message.timestamp?.toDate()).toUTCString()}</span></p>
+                    <p className={`message ${message.author===user.displayName && "message_recieve"}`}><span className={` ${(message.author===user.displayName)? "author__send" : "sender"}`}>{message.author}</span>{message.message}<span className="timestamp">{new Date(message.timestamp?.toDate()).toUTCString()}</span></p>
     ))}
 
 
