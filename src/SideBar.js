@@ -10,16 +10,23 @@ import SideBarChat from './SideBarChat';
 import db from './firebase'
 function SideBar() {
     const [rooms,setrooms]=useState([])
-    db.collection('rooms').onSnapshot((snapshot) => {
-    setrooms(
-            snapshot.docs.map((doc)=>({
-                id:doc.id,
-                data:doc.data()
-            }))
-    )
-
-
-    })
+    useEffect(() => {
+      const u=  db.collection('rooms').onSnapshot((snapshot) => {
+            setrooms(
+                    snapshot.docs.map((doc)=>({
+                        id:doc.id,
+                        data:doc.data()
+                    }))
+            )
+        
+        
+            })
+            return () => {
+                u();
+            }
+    },[])
+    
+  
     return (
         <div className="sidebar">
             <div className="sidebar__header">

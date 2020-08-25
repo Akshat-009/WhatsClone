@@ -1,12 +1,15 @@
 import React from 'react'
 import Avatar from '@material-ui/core/Avatar';
 import './SideBarChat.css'
+import db from './firebase'
 function SideBarChat({addnewchat,name,key}) {
     const newchat=()=>{
         const roomname=prompt("Enter chat roomname")
         if(roomname)
         {
-
+           db.collection("rooms").add({
+               roomname:roomname,
+           })
         }
     }
     return !addnewchat?(
