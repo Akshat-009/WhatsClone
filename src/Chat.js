@@ -29,7 +29,8 @@ function Chat() {
             <div className="conv__body">
                 
             <p className="message"><span className="sender">Akshat</span>sample message<span className="timestamp">3:52 pm</span></p>
-            
+            <p className="message message_recieve"><span className="sender">Akshat</span>sample message</p>
+            <p className="message"><span className="sender">Akshat</span>sample message</p>
         
             </div>
             <div className="conv__footer">
